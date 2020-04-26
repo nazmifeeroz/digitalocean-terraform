@@ -44,6 +44,26 @@ resource "digitalocean_droplet" "web" {
             "printf '\n\n===================\nDocker installed successfully!\n===================\n\n'"
         ]
     }
+
+    provisioner "remote-exec" {
+        connection {
+            host = self.ipv4_address
+            user = var.user_name
+            type = "ssh"
+            private_key = file(var.pvt_key)
+            timeout = "2m"
+        }
+
+        inline = [
+            "echo ${var.pw} | sudo -S apt update -y",
+            "sudo curl -L https://github.com/docker/compose/releases/download/1.25.5/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose",
+            "sudo chmod +x /usr/local/bin/docker-compose",
+            "mkdir hasura && cd hasura",
+            "wget https://raw.githubusercontent.com/nazmifeeroz/digitalocean-terraform/master/docker-compose.yaml",
+            "export ADMIN_SECRET=${var.hasura_admin_secret} && sudo docker-compose up -d",
+            "printf '\n\n===================\nHasura installed successfully!\n===================\n\n'"
+        ]
+    }
 }
 
 resource "digitalocean_domain" "web" {

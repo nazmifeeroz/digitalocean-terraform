@@ -5,6 +5,7 @@ variable "ssh_key" {}
 variable "user_name" {}
 variable "pw" {}
 variable "domain_name" {}
+variable "hasura_admin_secret" {}
 
 provider "digitalocean" {
     token = var.do_token
