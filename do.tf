@@ -60,7 +60,7 @@ resource "digitalocean_droplet" "web" {
             "sudo chmod +x /usr/local/bin/docker-compose",
             "mkdir hasura && cd hasura",
             "wget https://raw.githubusercontent.com/nazmifeeroz/digitalocean-terraform/master/docker-compose.yaml",
-            "export ADMIN_SECRET=${var.hasura_admin_secret} && sudo docker-compose up -d",
+            "export ADMIN_SECRET=${var.hasura_admin_secret} && sudo -E docker-compose up -d",
             "printf '\n\n===================\nHasura installed successfully!\n===================\n\n'"
         ]
     }
