@@ -19,7 +19,7 @@ resource "digitalocean_droplet" "web" {
             "echo ${var.user_name}:${var.pw} | chpasswd",
             "usermod -aG sudo ${var.user_name}",
             "rsync --archive --chown=${var.user_name}:${var.user_name} ~/.ssh /home/${var.user_name}",
-            "printf '\n\n===================\nUser ${var.user_name} created successfully!\n===================\n\n'"
+            "printf '\n\n===================\nUser ${var.user_name} created successfully!\n=================\n\n'"
         ]
     }
 
@@ -44,6 +44,18 @@ resource "digitalocean_droplet" "web" {
             "printf '\n\n===================\nDocker installed successfully!\n===================\n\n'"
         ]
     }
+}
+
+resource "digitalocean_domain" "web" {
+    name = var.domain_name
+    ip_address = digitalocean_droplet.web.ipv4_address
+}
+
+resource "digitalocean_record" "web_record" {
+    domain = digitalocean_domain.web.name
+    type = "CNAME"
+    name = "web-record"
+    value = "${digitalocean_domain.web.name}."
 }
 
 output "ip" {

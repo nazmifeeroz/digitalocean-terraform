@@ -9,5 +9,6 @@ $ terraform apply \
   -var "pvt_key=$HOME/.ssh/id_rsa" \
   -var "ssh_key=$SSH_KEY" \
   -var "user_name=ubuntu" \
-  -var "pw='somePassword'"
+  -var "pw=somePassword" \
+  -var "domain_name=your_domain.name"
 ```
