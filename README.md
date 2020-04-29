@@ -11,5 +11,6 @@ $ terraform apply \
   -var "user_name=ubuntu" \
   -var "pw=$NON_ROOT_PWD" \
   -var "hasura_admin_secret=$ADMIN_SECRET" \
+  -var "hasura_jwt_secret=$JWT_TOKEN" \
   -var "domain_name=$DOMAIN_NAME"
 ```
