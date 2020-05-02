@@ -21,6 +21,5 @@ services:
       ## uncomment next line to set an admin secret
       HASURA_GRAPHQL_ADMIN_SECRET: "${ADMIN_SECRET}"
       HASURA_GRAPHQL_JWT_SECRET: '{"type": "RS512", "key": "-----BEGIN CERTIFICATE-----\n${JWT_SECRET}\n-----END CERTIFICATE-----"}'
-    command: echo $JWT_SECRET
 volumes:
   db_data:
