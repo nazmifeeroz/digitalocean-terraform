@@ -62,10 +62,13 @@ resource "digitalocean_droplet" "web" {
             "wget https://raw.githubusercontent.com/nazmifeeroz/digitalocean-terraform/master/docker-compose.yaml",
             "export ADMIN_SECRET=${var.hasura_admin_secret}",
             "export JWT_SECRET=${var.hasura_jwt_secret}",
+            "printf '\n\n===================\n'",
+            "sudo -E docker-compose config",
+            "printf '\n===================\n\n'",
             "sudo -E docker-compose up -d",
             "printf '\n\n===================\nHasura installed successfully!\n===================\n\n'",
-            "echo ${var.hasura_admin_secret}",
-            "echo ${var.hasura_jwt_secret}"
+            "echo $ADMIN_SECRET",
+            "echo $JWT_SECRET"
         ]
     }
 }
