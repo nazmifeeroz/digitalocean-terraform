@@ -1,13 +1,15 @@
-variable "do_token" {}
-variable "pub_key" {}
-variable "pvt_key" {}
-variable "ssh_key" {}
-variable "user_name" {}
-variable "pw" {}
-variable "domain_name" {}
-variable "hasura_admin_secret" {}
-variable "hasura_jwt_secret" {}
+variable "DOMAIN_NAME" {}
+variable "DO_PAT" {}
+variable "HASURA_ADMIN_SECRET" {}
+variable "HASURA_JWT_SECRET" {}
+variable "NON_ROOT_PWD" {}
+variable "PUB_KEY" {}
+variable "PVT_KEY" {}
+variable "SSH_KEY" {}
+variable "USERNAME" {
+    default = "ubuntu"
+}
 
 provider "digitalocean" {
-    token = var.do_token
+    token = var.DO_PAT
 }
